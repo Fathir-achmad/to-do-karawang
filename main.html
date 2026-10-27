@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jelajah Karawang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;600&display=swap">
+<style>
+:root{--bg:#f2f6dc;--hero:#cfe56a;--ink:#0d3b2e;--mut:#4d6a5c;--card:#fffef5;--line:#c4cfa0;--wis:#0f6e82;--mal:#b8327a;--kul:#d4501a;--sun:#ffd23f;--r1:#a6cc4a;--r2:#6bab3e;--r3:#2f7d3a;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f201a;--hero:#1b3b2c;--ink:#e6f2cf;--mut:#9db8a8;--card:#172b22;--line:#2e4a3b;--sun:#c9a82e;--r1:#2c5a36;--r2:#244a2e;--r3:#1a3825;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f201a;--hero:#1b3b2c;--ink:#e6f2cf;--mut:#9db8a8;--card:#172b22;--line:#2e4a3b;--sun:#c9a82e;--r1:#2c5a36;--r2:#244a2e;--r3:#1a3825;color-scheme:dark}
+html{background:var(--hero);scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+.hero{background:var(--hero);position:relative;padding:28px 18px 0;overflow:hidden}
+.hero-in{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.sun{position:absolute;right:6%;top:18px;width:clamp(70px,14vw,140px);aspect-ratio:1;border-radius:50%;background:var(--sun)}
+h1{font-family:"Bricolage Grotesque",Georgia,serif;font-weight:800;font-size:clamp(2.6rem,10vw,5.6rem);line-height:.92;letter-spacing:-.035em;margin:24px 0 14px;max-width:11ch}
+.lead{max-width:46ch;margin:0 0 22px;font-size:1.02rem}
+.ctl{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:84px}
+.rand{background:var(--ink);color:var(--hero);border:0;border-radius:999px;padding:13px 22px;font:600 1rem "DM Sans",sans-serif;cursor:pointer}
+.rand:active{transform:scale(.97)}
+#q{flex:1;min-width:200px;max-width:360px;border:2px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:11px 18px;font:400 1rem "DM Sans",sans-serif}
+#q::placeholder{color:var(--mut)}
+.field{display:block;width:100%;height:90px;position:absolute;left:0;bottom:-1px}
+.r1{fill:var(--r1)}.r2{fill:var(--r2)}.r3{fill:var(--r3)}.rb{fill:var(--bg)}
+.main{max-width:1100px;margin:0 auto;padding:6px 18px 48px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:6px 0 18px}
+.chip{flex:none;border:2px solid var(--ink);background:transparent;color:var(--ink);padding:8px 16px;border-radius:999px;font:600 .92rem "DM Sans",sans-serif;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+#list{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.tk{display:flex;flex-direction:column;border-radius:18px;overflow:hidden;background:var(--card);min-width:0;transition:outline-color .3s;outline:4px solid transparent;outline-offset:3px}
+.tk.pick{outline-color:var(--ink)}
+.top{background-color:var(--c);background-image:radial-gradient(rgba(255,255,255,.2) 1.5px,transparent 1.7px);background-size:14px 14px;color:#fff;padding:16px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between;gap:18px}
+.row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.ico{width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center;font-size:1.9rem}
+.kind{font-size:.78rem;font-weight:600;border:1.5px solid rgba(255,255,255,.8);border-radius:999px;padding:2px 10px}
+.top h2{font-family:"Bricolage Grotesque",Georgia,serif;font-weight:800;font-size:1.45rem;line-height:1.05;letter-spacing:-.02em;margin:0 0 4px}
+.loc{font-size:.85rem;opacity:.9}
+.stub{position:relative;padding:20px 16px 16px;display:flex;flex-direction:column;flex:1}
+.stub::before,.stub::after{content:"";position:absolute;top:-11px;width:22px;height:22px;border-radius:50%;background:var(--bg)}
+.stub::before{left:-11px}.stub::after{right:-11px}
+.stub::before,.stub::after{z-index:1}
+.perf{position:absolute;left:16px;right:16px;top:-1px;border-top:2px dashed var(--line)}
+.cap{margin:0 0 6px;font-weight:600;font-size:.95rem}
+.desc{margin:0 0 12px;font-size:.9rem;color:var(--mut)}
+.route{display:flex;align-items:center;gap:6px;font-size:.76rem;color:var(--mut);margin-top:auto;margin-bottom:12px}
+.route b{flex:1;border-top:2px dotted var(--mut)}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.go,.ph{text-decoration:none;font-weight:600;font-size:.9rem;border-radius:999px;padding:10px 16px}
+.go{background:var(--c);color:#fff;flex:1;text-align:center}
+.ph{border:2px solid var(--c);color:var(--ink)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:40px 0}
+.note{font-size:.82rem;color:var(--mut);margin-top:28px;max-width:60ch}
+@keyframes deal{from{opacity:0;transform:translateY(26px) rotate(-1.5deg)}to{opacity:1;transform:none}}
+.deal .tk{animation:deal .55s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d)}
+@media (prefers-reduced-motion:reduce){.deal .tk{animation:none}.tk{transition:none}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="sun" aria-hidden="true"></div>
+  <div class="hero-in">
+    <h1>Mau ke mana di Karawang?</h1>
+    <p class="lead">Lumbung padi, kota Proklamasi, dan pantai utara Jawa. Ambil satu tiket, lalu Google Maps mengantar dari posisimu sekarang.</p>
+    <div class="ctl">
+      <button class="rand" id="rand" type="button">Acak tujuan</button>
+      <input id="q" type="search" placeholder="Cari tempat atau kuliner" aria-label="Cari tempat atau kuliner">
+    </div>
+  </div>
+  <svg class="field" viewBox="0 0 800 90" preserveAspectRatio="none" aria-hidden="true">
+    <path class="r1" d="M0 40 Q100 10 200 38 T400 34 T600 40 T800 30 V90 H0Z"/>
+    <path class="r2" d="M0 55 Q120 30 240 54 T480 50 T800 52 V90 H0Z"/>
+    <path class="r3" d="M0 68 Q140 50 280 68 T560 66 T800 66 V90 H0Z"/>
+    <path class="rb" d="M0 82 Q200 70 400 82 T800 80 V90 H0Z"/>
+  </svg>
+</header>
+<main class="main">
+  <div class="chips" id="chips" role="group" aria-label="Filter kategori"></div>
+  <div id="list"></div>
+  <p class="note">Izinkan akses lokasi di Google Maps agar rute dihitung dari posisimu. Cek jam buka dan kondisi terbaru di Maps sebelum berangkat.</p>
+</main>
+<script>
+var DATA=[
+{c:"Wisata",e:"🏖️",n:"Pantai Tanjung Pakis",a:"Pakisjaya",cap:"Hamparan pantai dan laut lepas di pesisir utara",d:"Populer untuk menikmati suasana laut, sunset, dan jajanan seafood sederhana.",q:"Pantai Tanjung Pakis Karawang"},
+{c:"Wisata",e:"🌊",n:"Pantai Sedari",a:"Cibuaya",cap:"Tepi laut yang santai untuk piknik keluarga",d:"Cocok untuk bersantai di tepi laut dengan suasana yang lebih tenang.",q:"Pantai Sedari Karawang"},
+{c:"Wisata",e:"🛕",n:"Situs Percandian Batujaya",a:"Batujaya",cap:"Gundukan candi bata peninggalan Tarumanagara",d:"Candi Buddha kuno di tengah sawah. Pas untuk wisata sejarah dan edukasi.",q:"Candi Jiwa Batujaya Karawang"},
+{c:"Wisata",e:"🏠",n:"Rumah Sejarah Djiaw Kie Siong",a:"Rengasdengklok",cap:"Rumah tempat Soekarno-Hatta singgah pada 1945",d:"Saksi peristiwa menjelang Proklamasi. Wajib untuk pecinta sejarah.",q:"Rumah Sejarah Djiaw Kie Siong Rengasdengklok"},
+{c:"Wisata",e:"🗿",n:"Monumen Kebulatan Tekad",a:"Rengasdengklok",cap:"Monumen peringatan peristiwa Rengasdengklok",d:"Mudah digabung dalam satu rute dengan rumah sejarah.",q:"Monumen Kebulatan Tekad Rengasdengklok"},
+{c:"Wisata",e:"💦",n:"Curug Cigentis",a:"Pangkalan",cap:"Air terjun di tengah rimbun pepohonan",d:"Suasana alam yang teduh untuk kabur sejenak dari panasnya kota.",q:"Curug Cigentis Karawang"},
+{c:"Mall",e:"🏬",n:"Karawang Central Plaza",a:"Karawang Barat",cap:"Pusat belanja dan hiburan di tengah kota",d:"Mal lama yang dikenal warga: belanja, bioskop, dan food court.",q:"Karawang Central Plaza"},
+{c:"Mall",e:"🛒",n:"Transmart Karawang",a:"Karawang",cap:"Belanja dan hiburan keluarga dalam satu atap",d:"Pilihan tenant dan makanan yang beragam untuk seharian.",q:"Transmart Karawang"},
+{c:"Mall",e:"🛍️",n:"Grand Taruma",a:"Karawang",cap:"Belanja, makan, dan nongkrong",d:"Pusat perbelanjaan dengan toko, tempat makan, dan area santai.",q:"Grand Taruma Karawang"},
+{c:"Kuliner",e:"🍲",n:"Soto Karawang",a:"Terdekat dari lokasimu",cap:"Semangkuk soto hangat untuk sarapan",d:"Maps menampilkan warung soto dengan rating terbaik di dekatmu.",q:"soto Karawang"},
+{c:"Kuliner",e:"🍢",n:"Sate Maranggi",a:"Terdekat dari lokasimu",cap:"Sate berbumbu manis-gurih khas Jawa Barat",d:"Nikmat dengan nasi hangat atau ketan bakar.",q:"sate maranggi Karawang"},
+{c:"Kuliner",e:"🍚",n:"Nasi Liwet & Timbel",a:"Terdekat dari lokasimu",cap:"Nasi khas Sunda dengan lauk dan sambal",d:"Ayam goreng, ikan asin, tahu-tempe, dan sambal dalam satu piring.",q:"nasi liwet Karawang"},
+{c:"Kuliner",e:"🦐",n:"Seafood Pesisir",a:"Terdekat dari lokasimu",cap:"Hidangan laut segar dari pesisir utara",d:"Ikan dan olahan laut segar untuk makan bersama keluarga.",q:"seafood Karawang"},
+{c:"Kuliner",e:"☕",n:"Kafe & Tempat Nongkrong",a:"Terdekat dari lokasimu",cap:"Kafe nyaman untuk bekerja atau berkumpul",d:"Cari kafe lengkap dengan ulasan pengunjung.",q:"cafe Karawang"}
+];
+var COL={Wisata:"var(--wis)",Mall:"var(--mal)",Kuliner:"var(--kul)"};
+var cats=["Semua","Wisata","Mall","Kuliner"],cur="Semua",first=true;
+function maps(q){return "https://www.google.com/maps/dir/?api=1&travelmode=driving&destination="+encodeURIComponent(q)}
+function img(q){return "https://www.google.com/search?tbm=isch&q="+encodeURIComponent(q)}
+function render(){
+  var t=document.getElementById("q").value.toLowerCase(),L=document.getElementById("list");
+  var r=DATA.filter(function(x){return (cur=="Semua"||x.c==cur)&&(x.n+x.d+x.a+x.cap).toLowerCase().indexOf(t)>-1});
+  L.className=first?"deal":"";
+  L.innerHTML=r.length?r.map(function(x,i){
+    return '<article class="tk" style="--c:'+COL[x.c]+';--d:'+(i*60)+'ms"><div class="top"><div class="row"><div class="ico" aria-hidden="true">'+x.e+'</div><span class="kind">'+x.c+'</span></div><div><h2>'+x.n+'</h2><span class="loc">'+x.a+'</span></div></div><div class="stub"><span class="perf"></span><p class="cap">'+x.cap+'</p><p class="desc">'+x.d+'</p><div class="route"><span>Lokasimu</span><b></b><span>'+x.n.split(" ")[0]+'</span></div><div class="btns"><a class="go" target="_blank" rel="noopener" href="'+maps(x.q)+'">Petunjuk arah</a><a class="ph" target="_blank" rel="noopener" href="'+img(x.q)+'">Foto</a></div></div></article>'
+  }).join(""):'<div class="empty">Tidak ada tiket yang cocok. Coba kata kunci lain atau pilih Semua.</div>';
+  first=false;
+}
+function chips(){
+  var el=document.getElementById("chips");
+  el.innerHTML=cats.map(function(c){return '<button type="button" class="chip" aria-pressed="'+(c==cur)+'" data-c="'+c+'">'+c+'</button>'}).join("");
+  [].forEach.call(el.children,function(b){b.onclick=function(){cur=b.dataset.c;chips();render()}});
+}
+document.getElementById("q").oninput=render;
+document.getElementById("rand").onclick=function(){
+  var T=document.querySelectorAll(".tk");if(!T.length)return;
+  var k=T[Math.floor(Math.random()*T.length)];
+  [].forEach.call(T,function(x){x.classList.remove("pick")});
+  k.scrollIntoView({behavior:"smooth",block:"center"});k.classList.add("pick");
+  setTimeout(function(){k.classList.remove("pick")},2600);
+};
+chips();render();
+</script>
+</body>
+</html>
